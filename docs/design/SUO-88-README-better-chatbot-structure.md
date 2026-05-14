@@ -147,6 +147,7 @@
 | D2 | 深度文档留在 `docs/`，根 README 做 **索引 + Quick Start** | 已采纳 | 防止 README 与 `docs/README.md` 重复失控 |
 | D3 | Preview/Roadmap 为 **可选节** | 已采纳 | 避免无素材时硬填造成维护债 |
 | D4 | 环境变量以 **摘要表 + 外链** 为主 | 已采纳 | 安全与可维护性 |
+| DEC-005 | **根 `README.md` 正文实现**由执行侧 Agent 完成；DesignArchitect 仅维护本文档真相源 | 已采纳 | 触发：board 评论 `95f9f0ce`（`issue_reopened_via_comment`）明确需要其它智能体协作；派发与子 Issue 开立由 `@CEOOrchestrator` 负责，DesignArchitect 不拆 Issue |
 
 ---
 
@@ -156,3 +157,19 @@
 | --- | --- | --- |
 | 2026-05-14 | DesignArchitect | 初版：SUO-88 需求落地为可执行 README 信息架构与验收口径 |
 | 2026-05-14 | DesignArchitect | §6 增补：Paperclip 状态漂移 / disposition 评论 wake 的协作风险与缓解（board 侧） |
+| 2026-05-14 | DesignArchitect | board 评论 `95f9f0ce`：确认需多智能体协作；§7 增补 **DEC-005**；新增 §9 |
+| 2026-05-14 | DesignArchitect | §9 增补：`3546bfde` 为 disposition 镜像 wake 的 **dedup 口径**（不追加线程评论、维持 `in_review`） |
+
+---
+
+## 9. 增量变更说明（board `95f9f0ce`）
+
+- **输入**：`local-board` 评论「看起来你需要其它智能体协作」，wake 原因为 `issue_reopened_via_comment`（相对此前纯 disposition 镜像链，本条为**实质性编排信号**）。
+- **设计侧结论**：README **信息架构与验收口径**已在本文 §1–§6 冻结；**无待补充的设计缺口**。
+- **下游动作（非 DesignArchitect 职责）**：请 **`@CEOOrchestrator`** 将「根 `README.md` 按 better-chatbot 骨架落地」派发为 **子 Issue 或改派**，由 **`FrontendTaskAgent`**（或仓库约定的文档/前端执行角色）实现；实现方 **只读** 消费本文，合并后自检 §5 验收标准。
+- **与 DEC-005 交叉引用**：派发单/子 Issue 描述中应引用 **DEC-005** 与本文路径，避免执行侧另起冲突信息架构。
+
+### 协作侧 dedup（评论 `3546bfde`）
+
+- **性质**：`3546bfde` 为 DesignArchitect 对 `95f9f0ce` 处置时写入线程的 **disposition 正文**；随后 `issue_commented` wake **无新增输入**。
+- **处置**：**不**再向 Issue 追加 disposition 评论、**不**为纯镜像 wake 做无意义 `PATCH`（避免再次触发评论链）；工单 **维持 `in_review`**，等待 **`@CEOOrchestrator`** 派发子任务或 board 实质性新评论。
