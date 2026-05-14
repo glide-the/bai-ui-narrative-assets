@@ -199,7 +199,7 @@ function convertToStorageParts(
   });
 }
 
-/** 把 ChatAttachment 映射成 DB Attachment（ai4sales 的 types.ts） */
+/** 把 ChatAttachment 映射成 DB Attachment（nationality 的 types.ts） */
 function mapChatAttachmentToDbAttachment(att: ChatAttachment): Attachment {
   return {
     id: createId("att"),

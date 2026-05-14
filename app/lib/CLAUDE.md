@@ -360,9 +360,9 @@ import {
 ```typescript
 function getPool() {
   const globalPool = globalThis as GlobalPool;
-  if (!globalPool.__ai4sales_pg_pool__) {
+  if (!globalPool.__nationality_pg_pool__) {
     const connectionString = process.env.DATABASE_URL;
-    globalPool.__ai4sales_pg_pool__ = new Pool({
+    globalPool.__nationality_pg_pool__ = new Pool({
       connectionString,
       host: process.env.PGHOST,
       port: process.env.PGPORT ? Number(process.env.PGPORT) : undefined,
@@ -371,7 +371,7 @@ function getPool() {
       database: process.env.PGDATABASE
     });
   }
-  return globalPool.__ai4sales_pg_pool__;
+  return globalPool.__nationality_pg_pool__;
 }
 ```
 
@@ -523,14 +523,14 @@ export async function updateConversationLink(
 ### 并发控制机制
 
 ```typescript
-type GlobalQueue = typeof globalThis & { __ai4sales_write_queue__?: DbQueue };
+type GlobalQueue = typeof globalThis & { __nationality_write_queue__?: DbQueue };
 
 const globalQueue = globalThis as GlobalQueue;
-if (!globalQueue.__ai4sales_write_queue__) {
-  globalQueue.__ai4sales_write_queue__ = Promise.resolve();
+if (!globalQueue.__nationality_write_queue__) {
+  globalQueue.__nationality_write_queue__ = Promise.resolve();
 }
 
-globalQueue.__ai4sales_write_queue__ = globalQueue.__ai4sales_write_queue__
+globalQueue.__nationality_write_queue__ = globalQueue.__nationality_write_queue__
   .then(async () => {
     // 执行数据库操作
   })

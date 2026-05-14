@@ -1,4 +1,4 @@
-# AI4Sales PWA 应用
+# Nationality PWA 应用
 
 > **最后更新**: 2026-01-29 16:38:08
 > **项目类型**: Next.js 16 PWA 应用
@@ -29,7 +29,7 @@
 
 ## 📋 项目概览
 
-AI4Sales 是一个面向 B2B 销售人员的移动优先 PWA 应用，通过 AI 助手快速收集客户信息并结构化沉淀为客户档案，提升销售信息收集与行动效率。
+Nationality 是一个面向 B2B 销售人员的移动优先 PWA 应用，通过 AI 助手快速收集客户信息并结构化沉淀为客户档案，提升销售信息收集与行动效率。
 
 ### 核心价值主张
 
@@ -128,7 +128,7 @@ graph TB
 
 ```mermaid
 graph TD
-    A["(根) AI4Sales PWA"] --> B["app/(app)"];
+    A["(根) Nationality PWA"] --> B["app/(app)"];
     A --> C["app/api"];
     A --> D["app/lib"];
     A --> E["app/components"];
@@ -375,7 +375,7 @@ pnpm db:migrate
 
 ### 项目结构
 ```
-ai4sales-pwa-app/
+nationality-pwa-app/
 ├── app/
 │   ├── (app)/              # 应用页面组 (共享布局)
 │   │   ├── ai-assistant/   # AI 助手页面

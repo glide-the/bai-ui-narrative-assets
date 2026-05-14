@@ -157,7 +157,7 @@ export class WeKnoraClient {
   private getHeaders(): HeadersInit {
     return {
       "X-API-Key": this.apiKey,
-      "X-Request-ID": `ai4sales-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+      "X-Request-ID": `nationality-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
     };
   }
 

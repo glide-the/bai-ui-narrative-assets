@@ -12,7 +12,7 @@
 ## 本地验收清单（SUO-85）
 
 1. **环境变量**：自 `.env.local.example` 复制为 `.env.local`，填写 `DATABASE_URL` 及存储、模型等密钥（勿提交 `.env.local`）。
-2. **数据库**：启动 `docker compose up -d postgres`（默认 `postgresql://ai4sales:ai4sales@127.0.0.1:5433/ai4sales` 与根目录 `docker-compose.yml` 一致），执行 `pnpm db:migrate`（`drizzle-kit push`）对齐 schema。
+2. **数据库**：启动 `docker compose up -d postgres`（默认 `postgresql://nationality:nationality@127.0.0.1:5433/nationality` 与根目录 `docker-compose.yml` 一致），执行 `pnpm db:migrate`（`drizzle-kit push`）对齐 schema。
 3. **Smoke**：`pnpm dev` 后对本机 `POST /api/claude-agent` 发一条最小合法请求（见 `app/lib/chat-schema.ts` 中 `chatApiSchemaRequestBodySchema`），确认流式或错误响应符合预期（含有效模型密钥时走通 happy path）。
 4. **可选**：按需收敛 `app/globals.css` / Tailwind 主题，避免与叙事站点设计冲突。
 

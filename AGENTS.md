@@ -1,4 +1,4 @@
-# Repository Guidelines (ai4sales-pwa-app)
+# Repository Guidelines (nationality-pwa-app)
 
 本仓库是一个 Next.js（App Router）PWA 应用：页面与 API 在同一仓库内组织。
 核心原则：**API 只做接入与编排，通用能力沉淀在 `app/lib`，且 `app/lib` 功能基本不变。**

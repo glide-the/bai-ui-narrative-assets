@@ -2,7 +2,7 @@
   "timestamp": "2026-01-29T16:38:08.000Z",
   "version": "3.0.0",
   "project": {
-    "name": "AI4Sales PWA",
+    "name": "Nationality PWA",
     "type": "Next.js 16 PWA Application",
     "tech_stack": [
       "Next.js 16.1.6",

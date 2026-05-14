@@ -10,7 +10,7 @@ interface LoggerInterface {
   withTag: (tag: string) => LoggerInterface;
 }
 
-const createLogger = (defaultTag: string = "ai4sales"): LoggerInterface => {
+const createLogger = (defaultTag: string = "nationality"): LoggerInterface => {
   const logLevel: LogLevel = IS_DEV ? "debug" : "info";
   const levels: Record<LogLevel, number> = {
     debug: 0,

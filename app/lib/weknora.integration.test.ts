@@ -156,7 +156,7 @@ WeKnora is a powerful knowledge base system that supports:
 
 ## Section 3: Conclusion
 
-This test validates the integration between ai4sales and WeKnora.
+This test validates the integration between nationality and WeKnora.
 
 Created at: ${new Date().toISOString()}
 `;

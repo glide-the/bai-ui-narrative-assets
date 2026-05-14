@@ -1,5 +1,5 @@
 {
-  "name": "ai4sales-pwa-app",
+  "name": "nationality-pwa-app",
   "private": true,
   "version": "0.1.0",
   "packageManager": "pnpm@9.15.0",
@@ -20,7 +20,7 @@
     "docker:build": "cd docker && docker compose build",
     "docker:up": "cd docker && docker compose up -d --build",
     "docker:down": "cd docker && docker compose down",
-    "docker:logs": "cd docker && docker compose logs -f ai4sales-app"
+    "docker:logs": "cd docker && docker compose logs -f nationality-app"
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.64",

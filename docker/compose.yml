@@ -1,5 +1,5 @@
 # ============================================
-# ai4sales-pwa-app — Docker Compose
+# nationality-pwa-app — Docker Compose
 # ============================================
 # Usage:
 #   cd docker
@@ -9,7 +9,7 @@
 
 services:
   # ---- Next.js Application ----
-  ai4sales-app:
+  nationality-app:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile
@@ -23,7 +23,7 @@ services:
       - 8.8.8.8
       - 8.8.4.4
     networks:
-      - ai4sales-network
+      - nationality-network
     depends_on:
       postgres:
         condition: service_healthy
@@ -42,15 +42,15 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-ai4sales}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ai4sales}
-      POSTGRES_DB: ${POSTGRES_DB:-ai4sales}
+      POSTGRES_USER: ${POSTGRES_USER:-nationality}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nationality}
+      POSTGRES_DB: ${POSTGRES_DB:-nationality}
     networks:
-      - ai4sales-network
+      - nationality-network
     volumes:
-      - ai4sales_postgres_data:/var/lib/postgresql/data
+      - nationality_postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ai4sales}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nationality}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -66,10 +66,10 @@ services:
       MINIO_ROOT_USER: ${MINIO_USER:-minioadmin}
       MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD:-minioadmin}
     volumes:
-      - ai4sales_minio_data:/data
+      - nationality_minio_data:/data
     command: server /data --console-address ":9001"
     networks:
-      - ai4sales-network
+      - nationality-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
       interval: 5s
@@ -83,7 +83,7 @@ services:
   # MinIO client to create bucket on startup
   minio-init:
     image: minio/mc:latest
-    container_name: ai4sales-minio-init
+    container_name: nationality-minio-init
     depends_on:
       minio:
         condition: service_healthy
@@ -105,12 +105,12 @@ services:
       MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD:-minioadmin}
       MINIO_BUCKET: ${FILE_STORAGE_S3_BUCKET:-vibesales}
     networks:
-      - ai4sales-network
+      - nationality-network
 
 volumes:
-  ai4sales_postgres_data:
-  ai4sales_minio_data:
+  nationality_postgres_data:
+  nationality_minio_data:
 
 networks:
-  ai4sales-network:
+  nationality-network:
     driver: bridge

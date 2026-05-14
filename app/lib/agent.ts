@@ -35,7 +35,7 @@ export function buildCustomerCard(queryText: string): {
     name = parts[0];
   }
 
-  const hash = stableHash(normalized || "ai4sales");
+  const hash = stableHash(normalized || "nationality");
   const title = titles[hash % titles.length];
   const selectedTags = [tags[hash % tags.length]];
   const insight = insights[hash % insights.length];

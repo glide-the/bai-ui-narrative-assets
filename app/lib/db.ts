@@ -17,14 +17,14 @@ import { conversations, customers, todos, systemConfigs } from "./db/schema";
 type DbQueue = Promise<void>;
 
 type GlobalPool = typeof globalThis & {
-  __ai4sales_pg_pool__?: Pool;
-  __ai4sales_db_init__?: Promise<void>;
-  __ai4sales_write_queue__?: DbQueue;
+  __nationality_pg_pool__?: Pool;
+  __nationality_db_init__?: Promise<void>;
+  __nationality_write_queue__?: DbQueue;
 };
 
 function getPool() {
   const globalPool = globalThis as GlobalPool;
-  if (!globalPool.__ai4sales_pg_pool__) {
+  if (!globalPool.__nationality_pg_pool__) {
     const connectionString = process.env.DATABASE_URL;
     if (!connectionString) {
       const missing: string[] = [];
@@ -42,7 +42,7 @@ function getPool() {
         );
       }
     }
-    globalPool.__ai4sales_pg_pool__ = new Pool({
+    globalPool.__nationality_pg_pool__ = new Pool({
       connectionString,
       host: process.env.PGHOST,
       port: process.env.PGPORT ? Number(process.env.PGPORT) : undefined,
@@ -51,7 +51,7 @@ function getPool() {
       database: process.env.PGDATABASE
     });
   }
-  return globalPool.__ai4sales_pg_pool__;
+  return globalPool.__nationality_pg_pool__;
 }
 
 function toIso(value: unknown) {
@@ -152,8 +152,8 @@ async function withTransaction<T>(
 
 async function ensureInitialized() {
   const globalPool = globalThis as GlobalPool;
-  if (!globalPool.__ai4sales_db_init__) {
-    globalPool.__ai4sales_db_init__ = (async () => {
+  if (!globalPool.__nationality_db_init__) {
+    globalPool.__nationality_db_init__ = (async () => {
       const pool = getPool();
       await pool.query(`
         CREATE TABLE IF NOT EXISTS customers (
@@ -273,7 +273,7 @@ async function ensureInitialized() {
       }
     })();
   }
-  await globalPool.__ai4sales_db_init__;
+  await globalPool.__nationality_db_init__;
 }
 
 async function readDbWithClient(client: PoolClient): Promise<DbShape> {
@@ -371,12 +371,12 @@ export async function withDb<T>(
   }
 ) {
   const globalPool = globalThis as GlobalPool;
-  if (!globalPool.__ai4sales_write_queue__) {
-    globalPool.__ai4sales_write_queue__ = Promise.resolve();
+  if (!globalPool.__nationality_write_queue__) {
+    globalPool.__nationality_write_queue__ = Promise.resolve();
   }
   let result: T | undefined;
 
-  globalPool.__ai4sales_write_queue__ = globalPool.__ai4sales_write_queue__
+  globalPool.__nationality_write_queue__ = globalPool.__nationality_write_queue__
     .then(async () => {
       await ensureInitialized();
       const pool = getPool();
@@ -401,7 +401,7 @@ export async function withDb<T>(
       throw error;
     });
 
-  await globalPool.__ai4sales_write_queue__;
+  await globalPool.__nationality_write_queue__;
   return result as T;
 }
 

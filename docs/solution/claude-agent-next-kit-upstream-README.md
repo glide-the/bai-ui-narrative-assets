@@ -1,4 +1,4 @@
-# AI4Sales PWA 应用
+# Nationality PWA 应用
 
 <div align="center">
 
@@ -19,7 +19,7 @@
 
 ## 📖 项目简介
 
-AI4Sales 是一个移动优先的 PWA（Progressive Web App）应用，专为 B2B 销售人员设计。通过 AI 助手快速收集客户信息并结构化沉淀为客户档案,提升销售信息收集与行动效率。
+Nationality 是一个移动优先的 PWA（Progressive Web App）应用，专为 B2B 销售人员设计。通过 AI 助手快速收集客户信息并结构化沉淀为客户档案,提升销售信息收集与行动效率。
 
 ### 核心价值
 
@@ -82,7 +82,7 @@ AI4Sales 是一个移动优先的 PWA（Progressive Web App）应用，专为 B2
 ```bash
 # 克隆仓库
 git clone <repository-url>
-cd ai4sales-pwa-app
+cd nationality-pwa-app
 
 # 安装依赖
 pnpm install
@@ -95,7 +95,7 @@ docker-compose up -d
 # 配置环境变量
 cp .env.local.example .env.local
 # 编辑 .env.local，设置以下变量：
-# DATABASE_URL=postgres://ai4sales:ai4sales@localhost:5433/ai4sales
+# DATABASE_URL=postgres://nationality:nationality@localhost:5433/nationality
 # 或设置 PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE
 ```
 
@@ -212,7 +212,7 @@ pnpm db:migrate
 ## 📁 项目结构
 
 ```
-ai4sales-pwa-app/
+nationality-pwa-app/
 ├── app/                        # Next.js App Router
 │   ├── (app)/                  # 应用页面组 (共享布局)
 │   │   ├── ai-assistant/       # AI 助手页面
@@ -469,6 +469,6 @@ npm run lint
 
 **用 AI 赋能销售,让客户管理更高效** 🚀
 
-Made with ❤️ by AI4Sales Team
+Made with ❤️ by Nationality Team
 
 </div>

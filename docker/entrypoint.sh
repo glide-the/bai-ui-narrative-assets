@@ -9,5 +9,5 @@ if [ "$(id -u)" = "0" ]; then
   chown -R "$APP_UID:$APP_GID" /app/agent-workspaces 2>/dev/null || true
 fi
 
-echo "[entrypoint] Starting ai4sales-pwa-app..."
+echo "[entrypoint] Starting nationality-pwa-app..."
 exec "$@"

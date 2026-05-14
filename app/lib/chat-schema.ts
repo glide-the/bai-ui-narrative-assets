@@ -39,7 +39,7 @@ export const WorkspaceFilePathPartSchema = z.object({
 export type WorkspaceFilePathPart = z.infer<typeof WorkspaceFilePathPartSchema>;
 
 /**
- * 目前 ai4sales 暂时用不到 mentions / MCP，先用 any 占位，
+ * 目前 nationality 暂时用不到 mentions / MCP，先用 any 占位，
  * 以后真要接 MCP 再完整搬。
  */
 export const ChatMentionSchema = z.any();
@@ -62,7 +62,7 @@ export type ChatModel = z.infer<typeof ChatModelSchema>;
 export const chatApiSchemaRequestBodySchema = z.object({
   /**
    * 会话 / 线程 ID
-   * 在 ai4sales 里可以直接等价于 Conversation.id
+   * 在 nationality 里可以直接等价于 Conversation.id
    */
   id: z.string(),
   /**
@@ -89,7 +89,7 @@ export const chatApiSchemaRequestBodySchema = z.object({
 
   attachments: z.array(ChatAttachmentSchema).optional(),
 
-  // ai4sales 扩展字段
+  // nationality 扩展字段
   contextCustomerIds: z.array(z.string()).optional(),
 
   /**
@@ -104,7 +104,7 @@ export type ChatApiSchemaRequestBody = z.infer<
 >;
 
 /**
- * Default chat model configuration for ai4sales
+ * Default chat model configuration for nationality
  */
 export const DEFAULT_CHAT_MODEL: ChatModel = {
   provider: "anthropic",
