@@ -1,0 +1,16 @@
+:root {
+  --ink-black: #11100d;
+  --rice-paper: #f4eedf;
+  --bone-white: #fff8e8;
+  --warm-sand: #d8b982;
+  --clay-red: #9b3f2f;
+  --indigo: #263c50;
+  --stone-gray: #9a968a;
+  --leaf-green: #556b46;
+  --shadow-brown: #4a3428;
+  --header-h: 88px;
+  --panel-w: 360px;
+  --rail-h: 92px;
+  --viewport-w: 1440px;
+  --viewport-h: 900px;
+}

@@ -40,14 +40,22 @@
 corepack enable
 pnpm install
 cp .env.local.example .env.local
+# 若 db:migrate 报 ECONNRESET，核对 Postgres 端口：cp env.local.template .env.local 或手动改 DATABASE_URL 为 5433（见下方故障排查）
 docker compose up -d postgres minio minio-init
 pnpm db:migrate
 pnpm dev
 ```
 
-默认开发地址是 `http://localhost:3000`。使用根 `docker-compose.yml` 启动依赖时，本机数据库默认可配为 `postgres://nationality:nationality@localhost:5433/nationality`；如改用 `docker/compose.yml`，请按 `docker/.env.example` 中的服务名与端口配置。
+默认开发地址是 `http://localhost:3000`。使用根 `docker-compose.yml` 启动依赖时，`.env.local` 中 `DATABASE_URL` 须为 `postgres://nationality:nationality@localhost:5433/nationality`（与 `docker-compose.yml` 中 `5433:5432` 映射一致）。如改用 `docker/compose.yml`，请按 `docker/.env.example` 中的服务名与端口配置。
 
 完整 Docker 应用可执行：`cp docker/.env.example docker/.env` 后运行 `pnpm docker:up`；日志与停止分别用 `pnpm docker:logs`、`pnpm docker:down`。
+
+### 故障排查：`pnpm db:migrate` 报 `ECONNRESET`
+
+1. **先起库**：`docker compose up -d postgres`，确认 `docker compose ps postgres` 为 `healthy`。
+2. **核对端口**：根目录 compose 把容器 `5432` 映射到本机 **5433**；`.env.local` 若仍写 `localhost:5432` 会连到错误实例并出现 `ECONNRESET`。
+3. **核对账号**：用户/库均为 `nationality`（见 `docker-compose.yml`），不是 `postgres:postgres`。
+4. **快速自检**：`DATABASE_URL='postgres://nationality:nationality@localhost:5433/nationality' pnpm db:migrate` 应输出 `[✓] Pulling schema` 或 `Changes applied`。
 
 ## 环境变量
 
@@ -79,7 +87,9 @@ pnpm dev
 | `pnpm lint` | ESLint |
 | `pnpm test` / `pnpm test:run` / `pnpm test:coverage` | Vitest 交互、单测批跑与覆盖率 |
 | `pnpm test:e2e` / `pnpm test:all` | Playwright E2E / 单测 + E2E |
-| `pnpm db:generate` / `pnpm db:migrate` | Drizzle 迁移生成 / push |
+| `pnpm db:up` | 启动根目录 `docker-compose.yml` 中的 Postgres |
+| `pnpm db:preflight` | 校验 `DATABASE_URL` 能否连上库（迁移前诊断） |
+| `pnpm db:generate` / `pnpm db:migrate` | Drizzle 迁移生成 / push（`db:migrate` 会先跑 preflight；显式 `--config=./drizzle.config.ts`） |
 | `pnpm docker:build` / `pnpm docker:up` / `pnpm docker:down` / `pnpm docker:logs` | `docker/compose.yml` 应用编排 |
 
 ## 仓库结构

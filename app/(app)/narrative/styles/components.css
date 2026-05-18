@@ -1,0 +1,50 @@
+.btn {
+  border-radius: 8px;
+  border: 1px solid var(--ink-black);
+  background: var(--bone-white);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.btn--primary {
+  background: var(--clay-red);
+  color: var(--bone-white);
+  border-color: var(--clay-red);
+}
+
+.btn.is-active {
+  box-shadow: inset 0 0 0 2px rgba(155, 63, 47, 0.35);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(216, 185, 130, 0.35);
+  border: 1px solid rgba(17, 16, 13, 0.08);
+  font-size: 12px;
+}
+
+.tag--mood {
+  background: rgba(38, 60, 80, 0.08);
+}
+
+.chip {
+  border-radius: 999px;
+  border: 1px solid rgba(17, 16, 13, 0.12);
+  padding: 6px 10px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.chip.is-active {
+  border-color: var(--clay-red);
+  background: rgba(155, 63, 47, 0.08);
+}

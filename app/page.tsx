@@ -19,6 +19,10 @@ export default function Home() {
         </li>
       </ul>
       <p>产品叙事与 UI 规格仍在仓库根目录 <code>docs/</code>。</p>
+      <p>
+        叙事原型（Next 内嵌版，SUO-103）：{" "}
+        <a href="/narrative">/narrative</a>
+      </p>
     </main>
   );
 }
